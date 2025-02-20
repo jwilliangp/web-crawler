@@ -27,7 +27,7 @@ class CrawlingSpider(CrawlSpider):
         else:
             rating = "Sem Avaliação"
         yield {
-            "title": response.css(".product_main h1::text").get(),
+            "title": response.css(".product_main h1::text").get(default="Título Não Disponível"),
             "price": response.css(".price_color::text").get(),
             "availability": response.css(".availability::text")[1].get().replace("\n", "").replace(" ", ""),
             "rating": rating,
