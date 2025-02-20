@@ -4,12 +4,10 @@
 
 Este projeto é um Web Crawler desenvolvido com **Scrapy** para coletar informações de livros do site [Books to Scrape](http://books.toscrape.com/). Os dados extraídos são armazenados em um arquivo **JSON** e posteriormente exibidos em uma interface interativa criada com **Streamlit**.
 
-Web scraping, também conhecido como web crawling, é uma ferramenta eficiente para coletar dados da web [1]. Com um web scraper, é possível extrair dados sobre produtos, grandes volumes de texto, dados quantitativos ou dados de sites sem uma API oficial [1]. O Scrapy framework é uma ferramenta poderosa para criar web scrapers em Python [2][4][5].
-
 ## 🛠 Tecnologias Utilizadas
 
 - [**Python**](https://www.python.org/)
-- [**Scrapy**](https://scrapy.org/) - Para realizar o web scraping [2][4][5]
+- [**Scrapy**](https://scrapy.org/) - Para realizar o web scraping 
 - [**Streamlit**](https://streamlit.io/) - Para criar a interface web interativa
 - [**Pandas**](https://pandas.pydata.org/) - Para manipulação e análise dos dados coletados
 
