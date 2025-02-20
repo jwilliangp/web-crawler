@@ -14,7 +14,7 @@ Web scraping, também conhecido como web crawling, é uma ferramenta eficiente p
 - [**Pandas**](https://pandas.pydata.org/) - Para manipulação e análise dos dados coletados
 
 ## 📂 Estrutura do Projeto
-
+```
 INSPIRA-TEST/
 │-- scrapy_crawler/
 │ ├── scrapy_crawler/
@@ -30,7 +30,7 @@ INSPIRA-TEST/
 │-- venv/ # Ambiente virtual do Python
 │-- requirements.txt # Dependências do projeto
 │-- streamlit_app.py # Interface do Streamlit para visualização dos dados
-
+```
 
 ## 🚀 Como Executar o Projeto
 
