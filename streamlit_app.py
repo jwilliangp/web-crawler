@@ -18,7 +18,7 @@ st.markdown("""
 
 st.title("📚 Projeto Inspira - Web Crawler (Interface)")
 
-df["price"] = df["price"].astype(str).str.replace("£", "").astype(float)
+#Removida funcionalidade de conversão de String para Float
 
 df.dropna(subset=['genre'], inplace=True)
 
@@ -53,9 +53,24 @@ optionsfilter = {
 selected_label = st.selectbox("Escolha o filtro:", list(optionsfilter.keys()))
 selected_filter = optionsfilter[selected_label]
 
+
 if df[selected_filter].dtype == "object":
     selected_value = st.selectbox("Escolha um valor:", df[selected_filter].unique())
     filtered_df = df[df[selected_filter] == selected_value]
+    
+elif selected_filter == "availability":    
+    availability_options = sorted(df["availability"].unique())
+
+    # Formata os valores para exibição, adicionando o número ao "No Estoque."
+    availability_options_format = [f"{value} No Estoque." for value in availability_options]
+
+    selected_option = st.selectbox("Escolha a disponibilidade:", availability_options_format)
+
+    # Extrai o número da opção selecionada. realiza o split da string ("XX No Estoque")
+    # e seleciona o primeiro valor (o número) antes de converter para int.
+    selected_value = int(selected_option.split()[0])  # "XX No Estoque" = "XX", convertido para int
+    filtered_df = df[df["availability"] == selected_value]
+
 else:
     min_value, max_value = st.slider("Selecione um intervalo:", 
                                      float(df[selected_filter].min()),

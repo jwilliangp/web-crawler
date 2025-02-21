@@ -1,6 +1,6 @@
 from scrapy.spiders  import CrawlSpider, Rule
 from scrapy.linkextractors import LinkExtractor
-
+import re
 class CrawlingSpider(CrawlSpider):
     name = "mycrawler"
     allowed_domains = ["toscrape.com"]
@@ -26,10 +26,16 @@ class CrawlingSpider(CrawlSpider):
             rating = "5 Estrelas"
         else:
             rating = "Sem Avaliação"
+        
+        price_adjust = response.css(".price_color::text").get()
+        price = float(price_adjust[1:]) # Retira o £ e retorna como float
+        
+        availability_adjust = response.css(".availability::text")[1].get().strip()
+        availability = int(re.search(r"(\d+)", availability_adjust).group(1)) # Extrai do "In Stock 99 Available" o valor numérico como Integer
         yield {
             "title": response.css(".product_main h1::text").get(default="Título Não Disponível"),
-            "price": response.css(".price_color::text").get(),
-            "availability": response.css(".availability::text")[1].get().replace("\n", "").replace(" ", ""),
+            "price": price,
+            "availability": availability,
             "rating": rating,
             "genre":  response.css('a[href^="../category/books/"]::text').get()
         }
